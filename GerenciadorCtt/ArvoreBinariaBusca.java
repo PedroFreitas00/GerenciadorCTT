@@ -59,7 +59,7 @@ public class ArvoreBinariaBusca {
         return buscar(codigo) != null;
     }
     
-    public void remover(Contato valorRemover) {
+    public void remover(int valorRemover) {
 
         if (estaVazia()) {
             return;
@@ -69,9 +69,9 @@ public class ArvoreBinariaBusca {
         No pai = null;
 
         // Encontrar o nó a ser removido e seu pai
-        while (atual != null && atual.dado != valorRemover) {
+        while (atual != null && atual.dado.codigo != valorRemover) {
             pai = atual;
-            if (valorRemover.codigo < atual.dado.codigo) {
+            if (valorRemover < atual.dado.codigo) {
                 atual = atual.esquerdo;
             } else {
                 atual = atual.direito;

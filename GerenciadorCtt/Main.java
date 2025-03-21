@@ -24,7 +24,7 @@ public class Main{
 
             switch (opcao) {
 
-                case 1:
+                case 1 -> {
                     System.out.print("\nDigite o código do numero: ");
                     int codigo = scanner.nextInt();
                     
@@ -45,46 +45,53 @@ public class Main{
                         
                         System.out.println("\nContato adicionado com sucesso!");
                     }
-                    
+                }                    
     
-                break;
-    
-                case 2:
+                case 2 -> {
                     System.out.print("\nDigite o código a ser buscado: ");
                     int codigoBuscado = scanner.nextInt();
                     System.out.println("");
-                    No noRetornado = arvore.buscar(codigoBuscado);
-                    System.out.println(noRetornado.dado.codigo + " - " + noRetornado.dado.nome);
-                    System.out.println("");
-                break;
+                    if (arvore.codigoExiste(codigoBuscado)) {
+                        No noRetornado = arvore.buscar(codigoBuscado);
+                        System.out.println(noRetornado.dado.codigo + " - " + noRetornado.dado.nome + " - " +noRetornado.dado.numeroTelefone);
+                        System.out.println("");
+                    }
+                    else {
+                        System.out.println("O codigo buscado não existe!");
+                    }
+                   
+                }
     
-                case 3: 
-                    System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
-                break;
+                case 3 -> System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
     
-                case 4:
-                    System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
-                break;
+                case 4 -> {
+                    System.out.println("Digite o código a ser removido: ");
+                    int codigoBuscado = scanner.nextInt();
+
+                    if (arvore.existe(codigoBuscado)) {
+
+                        arvore.remover(codigoBuscado);
+
+                    }else {
+                        System.out.println("O código digitado não existe!");
+                    }
+                }
     
-                case 5:
+                case 5 -> {
                     System.out.println("Gerando arquivo CSV...");
                     GerarCSV.gerarArquivoCSV("contatos.csv");
                     System.out.println("Importando contatos...");
-                    ImportarCtt.importarContatos(arvore);
-                break;
+                    ImportarContato.importarContatos(arvore);
+                }
     
-                case 6:
-                    System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
-                break;
+                case 6 -> System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
     
-                case 7: 
+                case 7 -> { 
                     System.out.println("Saindo do progama...");
                     scanner.close();
-                break;
+                }
 
-                default:
-                    System.out.println("Opcao inválida!");
-                break;
+                default -> System.out.println("Opcao inválida!");
            }
         } while (opcao != 7); 
     }   
