@@ -84,7 +84,18 @@ public class Main{
                     ImportarContato.importarContatos(arvore);
                 }
     
-                case 6 -> System.out.println("adicione um contato, composto por código (inteiro único), nome e número de telefone");
+                case 6 -> {System.out.println("Exibindo estatísticas: ");
+                    if (!arvore.estaVazia()) {
+                        int quantidadeNos = arvore.contarNos();
+                        System.out.println("A quantidade de nós é: " +quantidadeNos);
+                        int alturaArvore = arvore.calcularAlturaArvore()+1;
+                        System.out.println("A altura da árvore é: " +alturaArvore);
+                        int quantidadeFolhas = arvore.contarFolhas();
+                        System.out.println("A quantidade de folhas é: " +quantidadeFolhas);
+                    } else {
+                        System.out.println("A árvore está vazia!");
+                    }
+                }
     
                 case 7 -> { 
                     System.out.println("Saindo do progama...");

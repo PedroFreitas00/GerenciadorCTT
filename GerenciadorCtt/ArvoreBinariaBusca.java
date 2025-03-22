@@ -1,3 +1,6 @@
+
+import javax.print.attribute.standard.MediaSize;
+
 public class ArvoreBinariaBusca {
 
     private static final int ESPACO_IMPRESSAO = 4;
@@ -181,6 +184,22 @@ public class ArvoreBinariaBusca {
             return calcularProfundidadeRecursivo(atual.esquerdo, valor, profundidade + 1);
         }
         return calcularProfundidadeRecursivo(atual.direito, valor, profundidade + 1);
+    }
+
+    private int contarFolhasRecursivo(No node) {
+        if (node == null)
+            return 0;
+
+        // Se o nó não tem filhos, é uma folha
+        if (node.esquerdo == null && node.direito == null)
+            return 1;
+
+        // Recursivamente conta folhas na subárvore esquerda e direita
+        return contarFolhasRecursivo(node.esquerdo) + contarFolhasRecursivo(node.direito);
+    }
+
+    public int contarFolhas() {
+        return contarFolhasRecursivo(raiz);
     }
 
     public String imprimirPreOrdem() {
