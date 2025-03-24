@@ -1,5 +1,6 @@
-
-import javax.print.attribute.standard.MediaSize;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ArvoreBinariaBusca {
 
@@ -9,6 +10,32 @@ public class ArvoreBinariaBusca {
     public ArvoreBinariaBusca() {
         this.raiz = null;
     }
+
+    public List<Contato> listarContatosOrdemAlfabetica() {
+        List<Contato> lista = new ArrayList<>();
+        adicionarContatosLista(raiz, lista);
+        Collections.sort(lista, (c1, c2) -> {
+            String nome1 = c1.nome.replaceAll("\\D", ""); // Remove letras e mantém números
+            String nome2 = c2.nome.replaceAll("\\D", "");
+    
+            if (!nome1.isEmpty() && !nome2.isEmpty()) {
+                return Integer.compare(Integer.parseInt(nome1), Integer.parseInt(nome2));
+            }
+    
+            return c1.nome.compareToIgnoreCase(c2.nome);
+        });
+    
+        return lista;
+    }
+
+    private void adicionarContatosLista(No atual, List<Contato> lista) {
+        if (atual != null) {
+            adicionarContatosLista(atual.esquerdo, lista); 
+            lista.add(atual.dado); 
+            adicionarContatosLista(atual.direito, lista); 
+        }
+    }
+
 
     public void inserir(Contato valorNovo) {
         if (estaVazia()) {
